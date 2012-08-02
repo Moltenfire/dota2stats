@@ -1,7 +1,7 @@
 import database, scrapper, sys
 
 insert = "INSERT INTO uwcsplayers(id, steamid, name) VALUES({0}, {1}, '{2}') ON DUPLICATE KEY UPDATE name='{2}'"
-url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={}&steamids="
+url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%s&steamids="
 commands = []
 
 if (len(sys.argv) == 1):
