@@ -1,5 +1,8 @@
-import database
+import database, parsePlayer
 
-select = "SELECT id, name, lastCheck FROM uwcsplayers"
+select = "SELECT id, lastCheck FROM uwcsplayers"
 
-database.getData(select)
+players = database.getData(select)
+
+for i in players:
+	parsePlayer.update(i[0], i[1])
