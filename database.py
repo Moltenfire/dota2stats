@@ -1,5 +1,4 @@
-import MySQLdb as mdb
-import sys
+import MySQLdb as mdb, sys
 
 def updateDatabase(commands):
 
