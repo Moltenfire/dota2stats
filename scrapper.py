@@ -1,15 +1,21 @@
-import json, urllib
+import json, urllib, sys
 
 key = "D62C58BC4F6E612A1BC6294B842CB63B"
-# url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key={0}"
+# url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=%s"
 
 def getDataURL(url):
-	output = json.load(urllib.urlopen(url.format(key)))
-	
-	return output
+	try:
+		output = json.load(urllib.urlopen(url % key))
+		return output
+	except:
+		return None
+		
 	
 def getDataFile(file):
-	with open(file) as f:
-		output = json.load(f)
-		
-	return output
+	try:
+		with open(file) as f:
+			output = json.load(f)
+			
+		return output
+	except:
+		return None
