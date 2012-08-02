@@ -35,12 +35,9 @@ def getData(command):
 			cur = con.cursor()
 			cur.execute(command)
 			
-			print "Rows: ", int(cur.rowcount)
-			
 			rows = cur.fetchall()
 			
-			for row in rows:
-				print row
+			return rows
 				
 	except mdb.Error, e:
 	  
