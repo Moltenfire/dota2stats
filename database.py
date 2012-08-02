@@ -6,12 +6,10 @@ con = None
 try:
 	con = mdb.connect('localhost', 'moltenfire', 'apple123', 'dota2');
 	
-	cur = con.cursor()
-	cur.execute("SELECT VERSION()")
-	
-	data = cur.fetchone()
-	
-	print "Database version : %s " % data
+	with con:
+		
+		cur = con.cursor()
+		
 	
 except mdb.Error, e:
   
