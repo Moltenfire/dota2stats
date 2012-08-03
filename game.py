@@ -12,8 +12,6 @@ commands = []
 def parseGame(id):
 
 	commands = []
-
-	print "Now parsing match_id: ", id
 	
 	if database.getDataSingle(sqlmatch.format(id)) == 0:
 		game = scrapper.getDataURL(url.format(id))['result']
