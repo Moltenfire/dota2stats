@@ -16,6 +16,6 @@ else:
 		name = i['personaname']
 		steamid = int(i['steamid'])
 		account = steamid - 0x0110000100000000
-		commands.append(insert.format(account, steamid, name))
+		commands.append((insert, (account, steamid, name)))
 
 database.updateDatabase(commands)

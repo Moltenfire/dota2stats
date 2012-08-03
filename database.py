@@ -5,13 +5,13 @@ def updateDatabase(commands):
 	con = None
 
 	try:
-		con = mdb.connect('localhost', 'moltenfire', 'apple123', 'dota2');
+		con = mdb.connect('localhost', 'moltenfire', 'apple123', 'dota2', use_unicode=True, charset='utf8');
 		
 		with con:
 			
 			cur = con.cursor()
 			for i in commands:
-				cur.execute(i)
+				cur.execute(i[0],i[1])
 			
 		
 	except mdb.Error, e:
