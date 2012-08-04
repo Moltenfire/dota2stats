@@ -3,23 +3,34 @@
 -- Server version:               5.5.25a - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-08-03 01:42:10
+-- Date/time:                    2012-08-04 23:46:42
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
--- Dumping database structure for dota2
-CREATE DATABASE IF NOT EXISTS `dota2` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `dota2`;
-
-
 -- Dumping structure for table dota2.heroes
 CREATE TABLE IF NOT EXISTS `heroes` (
   `hero_id` smallint(4) unsigned NOT NULL,
   `hero_name` tinytext NOT NULL,
   PRIMARY KEY (`hero_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table dota2.itemplayers
+CREATE TABLE IF NOT EXISTS `itemplayers` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `match_id` int(10) unsigned NOT NULL,
+  `player_id` int(10) unsigned NOT NULL,
+  `item_id` smallint(4) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `item_fk` (`item_id`),
+  KEY `match_player_fk` (`match_id`,`player_id`),
+  CONSTRAINT `match_player_fk` FOREIGN KEY (`match_id`, `player_id`) REFERENCES `playermatchinfo` (`match_id`, `player_id`),
+  CONSTRAINT `item_fk` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -50,16 +61,9 @@ CREATE TABLE IF NOT EXISTS `matchinfo` (
 
 -- Dumping structure for table dota2.playermatchinfo
 CREATE TABLE IF NOT EXISTS `playermatchinfo` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `match_id` int(10) unsigned NOT NULL,
   `player_id` int(10) unsigned NOT NULL,
   `hero_id` smallint(4) unsigned NOT NULL,
-  `item_0` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `item_1` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `item_2` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `item_3` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `item_4` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `item_5` smallint(4) unsigned NOT NULL DEFAULT '0',
   `slot` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `kills` smallint(4) unsigned NOT NULL DEFAULT '0',
   `deaths` smallint(4) unsigned NOT NULL DEFAULT '0',
@@ -74,25 +78,13 @@ CREATE TABLE IF NOT EXISTS `playermatchinfo` (
   `hero_dmg` mediumint(6) unsigned NOT NULL DEFAULT '0',
   `tower_dmg` mediumint(6) unsigned NOT NULL DEFAULT '0',
   `leaver` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `match` (`match_id`),
-  KEY `player` (`player_id`),
-  KEY `hero` (`hero_id`),
-  KEY `item0` (`item_0`),
-  KEY `item1` (`item_1`),
-  KEY `item2` (`item_2`),
-  KEY `item3` (`item_3`),
-  KEY `item4` (`item_4`),
-  KEY `item5` (`item_5`),
-  CONSTRAINT `hero` FOREIGN KEY (`hero_id`) REFERENCES `heroes` (`hero_id`),
-  CONSTRAINT `item0` FOREIGN KEY (`item_0`) REFERENCES `items` (`item_id`),
-  CONSTRAINT `item1` FOREIGN KEY (`item_1`) REFERENCES `items` (`item_id`),
-  CONSTRAINT `item2` FOREIGN KEY (`item_2`) REFERENCES `items` (`item_id`),
-  CONSTRAINT `item3` FOREIGN KEY (`item_3`) REFERENCES `items` (`item_id`),
-  CONSTRAINT `item4` FOREIGN KEY (`item_4`) REFERENCES `items` (`item_id`),
-  CONSTRAINT `item5` FOREIGN KEY (`item_5`) REFERENCES `items` (`item_id`),
-  CONSTRAINT `match` FOREIGN KEY (`match_id`) REFERENCES `matchinfo` (`match_id`),
-  CONSTRAINT `player` FOREIGN KEY (`player_id`) REFERENCES `players` (`account_id`)
+  PRIMARY KEY (`match_id`,`player_id`),
+  KEY `hero_fk` (`hero_id`),
+  KEY `match_fk` (`match_id`),
+  KEY `player_fk` (`player_id`),
+  CONSTRAINT `hero_fk` FOREIGN KEY (`hero_id`) REFERENCES `heroes` (`hero_id`),
+  CONSTRAINT `match_fk` FOREIGN KEY (`match_id`) REFERENCES `matchinfo` (`match_id`),
+  CONSTRAINT `player_fk` FOREIGN KEY (`player_id`) REFERENCES `players` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -111,11 +103,8 @@ CREATE TABLE IF NOT EXISTS `players` (
 -- Dumping structure for table dota2.uwcsplayers
 CREATE TABLE IF NOT EXISTS `uwcsplayers` (
   `id` int(10) NOT NULL,
-  `steamid` bigint(20) NOT NULL,
-  `name` tinytext NOT NULL,
-  `lastCheck` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `steamid` (`steamid`)
+  `lastCheck` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
