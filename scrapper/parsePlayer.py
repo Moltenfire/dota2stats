@@ -29,7 +29,6 @@ def getGames(id, mintime, maxtime):
 			for i in data['result']['matches']:
 				games.append(i['match_id'])
 
-			
 			for i in games:
 				game.parseGame(i)
 				
