@@ -11,7 +11,7 @@ def updateDatabase(commands):
 			
 			cur = con.cursor()
 			for i in commands:
-				cur.execute(i[0],i[1])
+				cur.execute(i[0], i[1])
 			
 		
 	except mdb.Error, e:
@@ -23,7 +23,7 @@ def updateDatabase(commands):
 		if con:
 			con.close()
 			
-def getData(command):
+def getData(command, values):
 	
 	con = None
 	
@@ -33,7 +33,7 @@ def getData(command):
 		with con:
 			
 			cur = con.cursor()
-			cur.execute(command)
+			cur.execute(command, values)
 			
 			rows = cur.fetchall()
 			
@@ -48,7 +48,7 @@ def getData(command):
 		if con:
 			con.close()
 			
-def getDataSingle(command):
+def getDataSingle(command, values):
 	
 	con = None
 	
@@ -58,11 +58,11 @@ def getDataSingle(command):
 		with con:
 			
 			cur = con.cursor()
-			cur.execute(command)
+			cur.execute(command, values)
 			
-			row = cur.fetchone()
+			rows = cur.fetchone()
 			
-			return row[0]
+			return rows[0]
 				
 	except mdb.Error, e:
 	  

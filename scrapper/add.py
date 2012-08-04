@@ -1,6 +1,6 @@
 import database, scrapper, sys
 
-insert = "INSERT INTO uwcsplayers(id, steamid, name) VALUES({0}, {1}, '{2}') ON DUPLICATE KEY UPDATE name='{2}'"
+insert = "INSERT INTO uwcsplayers(id) VALUES(%s) ON DUPLICATE KEY UPDATE id=id"
 url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%s&steamids="
 commands = []
 
@@ -13,9 +13,7 @@ else:
 
 	userdata = scrapper.getDataURL(url)
 	for i in userdata['response']['players']:
-		name = i['personaname']
-		steamid = int(i['steamid'])
 		account = steamid - 0x0110000100000000
-		commands.append((insert, (account, steamid, name)))
+		commands.append((insert, (account)))
 
 database.updateDatabase(commands)
