@@ -1,0 +1,17 @@
+Index   /home
+    List of Players
+    
+
+Player  /player
+    General Stats
+    Latest Games
+
+Games    /games
+    General Stats
+    Player info
+
+Search
+    Search match no, name,
+
+Add Person
+    Add person to main page
