@@ -11,10 +11,7 @@ def update(id, lastcheck):
 	
 	getGames(id, lastcheck, currenttime)
 	database.updateDatabase([(sql, (currenttime, id))])
-
-
-
-		
+	
 def getGames(id, mintime, maxtime):
 	data = scrapper.getDataURL(url.format(id, mintime, maxtime))
 	
