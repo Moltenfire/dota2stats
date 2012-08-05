@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}UWCS DotA2 Stats - Games{% endblock %}
+
+{% block content %}
+<table>
+    <tr class='heading'>
+        <td>ID</td>
+        <td>Start Time</td>
+        <td>Duration</td>
+    </tr> 
+    {% for i in game_list %}
+        <tr>
+        <td><a href="/game/{{ i.match_id }}/">{{ i.match_id }}</a></td>
+        <td>{{ i.starttime }}</td>
+        <td class='duration'>{{ i.mins}}:{{ i.sec}}</td>
+        </tr>        
+    {% endfor %}
+</table>
+{% endblock %}

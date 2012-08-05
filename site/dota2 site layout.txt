@@ -6,9 +6,12 @@ Player  /player
     General Stats
     Latest Games
 
-Games    /games
+game    /game
     General Stats
     Player info
+    
+Games   /games
+    latest games
 
 Search
     Search match no, name,
