@@ -1,7 +1,7 @@
 import database, game, scrapper, sys, time
 
 url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=%s&account_id={}&date_min={}&date_max={}"
-sql = "UPDATE uwcsplayers SET lastCheck=%s WHERE id=%s"
+sql = "UPDATE uwcsplayers SET lastcheck=%s WHERE id=%s"
 games = []
 
 def update(id, lastcheck):

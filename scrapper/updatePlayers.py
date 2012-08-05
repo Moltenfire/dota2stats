@@ -1,6 +1,6 @@
 import database, parsePlayer
 
-select = "SELECT id, lastCheck FROM uwcsplayers"
+select = "SELECT id, lastcheck FROM uwcsplayers"
 
 players = database.getData(select, ())
 
