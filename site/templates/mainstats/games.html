@@ -17,4 +17,19 @@
         </tr>        
     {% endfor %}
 </table>
+</br>
+<div id="nextlinks">
+    <a href="/games/0/"><<</a>
+
+    <a href="/games/{{ prev }}/"><</a>
+      
+    <a href="/games/{{ next }}/">></a>
+
+    <a href="/games/{{ last }}/">>></a>
+</div>
+<p id='matches'>
+    Displaying matches {{ min }}-{{ max }} of {{ total }} 
+</p>
+
+
 {% endblock %}
