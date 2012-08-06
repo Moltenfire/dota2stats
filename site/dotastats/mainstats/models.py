@@ -33,10 +33,6 @@ class Matchinfo(models.Model):
     duration = models.IntegerField()
     start_time = models.IntegerField()
     first_blood = models.IntegerField()
-    
-    def __unicode__(self):
-        return self.match_id
-        
     class Meta:
         db_table = u'matchinfo'
 

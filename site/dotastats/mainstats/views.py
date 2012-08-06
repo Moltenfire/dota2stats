@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404
-from mainstats.models import Uwcsplayers, Mainview, Gamelist
+from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo
 from math import ceil
 
 
@@ -11,8 +11,14 @@ def index(request):
 def player(request, player_id):
     return HttpResponse("You're at the player %s." % player_id)
 
-def game(request, match_id):
-    return HttpResponse("You're at the match %s." % match_id)
+def game(request, id):
+    # Match_id, Start TIme, Duration, First blood time, Winner
+    
+    matchdata = Matchinfo.objects.filter(match_id=id)[0]
+    
+    # Player name, hero, level, items, kills, deaths, assists, creeps, gpm, xpm
+    
+    return render_to_response('mainstats/game.html', {'matchdata': matchdata})
     
 def games(request):
     return games_page(request, 0)
