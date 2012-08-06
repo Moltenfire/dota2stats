@@ -1,7 +1,8 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response, get_object_or_404
-from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo
+from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
+from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo, Playermatchdata, Matchdataitems
 from math import ceil
+import datetime
 
 
 def index(request):
@@ -14,11 +15,18 @@ def player(request, player_id):
 def game(request, id):
     # Match_id, Start TIme, Duration, First blood time, Winner
     
-    matchdata = Matchinfo.objects.filter(match_id=id)[0]
+    matchdata = get_object_or_404(Matchinfo, match_id=id)
+    playerdata = get_list_or_404(Playermatchdata, match_id=id)
+    items = list(Matchdataitems.objects.filter(match_id=id))
     
-    # Player name, hero, level, items, kills, deaths, assists, creeps, gpm, xpm
+    start = datetime.datetime.fromtimestamp(matchdata.start_time).strftime('%d-%m-%Y %H:%M:%S')    
     
-    return render_to_response('mainstats/game.html', {'matchdata': matchdata})
+    radiant = playerdata[:5]    
+    dire = playerdata[5:]
+ 
+    
+    
+    return render_to_response('mainstats/game.html', {'matchdata': matchdata, 'start': start, 'radiant': radiant, 'dire': dire, 'items': items})
     
 def games(request):
     return games_page(request, 0)

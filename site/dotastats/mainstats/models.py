@@ -43,6 +43,7 @@ class Uwcsplayers(models.Model):
         db_table = u'uwcsplayers'
 
 class Playermatchinfo(models.Model):
+    id = models.IntegerField(primary_key=True)
     match = models.ForeignKey(Matchinfo)
     player = models.ForeignKey(Players)
     hero = models.ForeignKey(Heroes)
@@ -62,6 +63,27 @@ class Playermatchinfo(models.Model):
     leaver = models.IntegerField()
     class Meta:
         db_table = u'playermatchinfo'
+        ordering = ['slot']
+        
+class Playermatchdata(models.Model):
+    id = models.IntegerField(primary_key=True)
+    match_id = models.IntegerField()
+    player_id = models.IntegerField()
+    name = models.CharField(max_length=300)
+    hero_name = models.CharField(max_length=180)
+    slot = models.IntegerField()
+    kills = models.IntegerField()
+    deaths = models.IntegerField()
+    assists = models.IntegerField()
+    lasthits = models.IntegerField()
+    denies = models.IntegerField()
+    level = models.IntegerField()
+    gpm = models.IntegerField()
+    xpm = models.IntegerField()
+    leaver = models.IntegerField()
+    class Meta:
+        db_table = u'playermatchdata'
+        ordering = ['slot']
         
 class Itemplayers(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -112,3 +134,13 @@ class Gamelist(models.Model):
     sec = models.BigIntegerField(null=True, blank=True)
     class Meta:
         db_table = u'gamelist'
+        
+class Matchdataitems(models.Model):
+    id = models.IntegerField(primary_key=True)
+    match_id = models.IntegerField()
+    player_id = models.IntegerField()
+    slot = models.IntegerField()
+    name = models.CharField(max_length=180)
+    class Meta:
+        db_table = u'matchdataitems'
+        ordering = ['slot']

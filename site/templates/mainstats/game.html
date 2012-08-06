@@ -3,7 +3,95 @@
 {% block content %}
 
 <div id="matchdetails">
-{{ matchdata.match_id }}
+
+Match ID: {{ matchdata.match_id }} </br>
+Start Time: {{ start }} </br>
+Winner: {% if matchdata.radiant_win %} Radiant {% else %} Dire {% endif %} </br></br>
+
+</div>
+
+<div class="matchplayerstats">
+
+<h3>Radiant</h3>
+<table>
+    <tr class='heading'>
+        <td>Name</td>
+        <td>Hero</td>
+        <td>Level</td>
+        <td>K</td>
+        <td>D</td>
+        <td>A</td>
+        <td>CS</td>
+        <td>CD</td>
+        <td>GPM</td>
+        <td>XPM</td>
+        <td>Items</td>        
+    </tr>
+    {% for i in radiant %}
+    <tr {% if i.leaver %} class="leaver" {% else %} class="player" {% endif %}>
+    <td><a href="/player/{{ i.player_id }}/">{{ i.name }}</a></td>
+    <td class="heroimg"><img src="/static/images/heroes/{{ i.hero_name }}_sb.png" alt="{{ i.hero_name }}" /></td>
+    <td class="numbersright">{{ i.level }}</td>
+    <td class="numbersright">{{ i.kills }}</td>
+    <td class="numbersright">{{ i.deaths }}</td>
+    <td class="numbersright">{{ i.assists }}</td>
+    <td class="numbersright">{{ i.lasthits }}</td>
+    <td class="numbersright">{{ i.denies }}</td>
+    <td class="numbersright">{{ i.gpm }}</td>
+    <td class="numbersright">{{ i.xpm }}</td>
+    <td class="items">
+    {% for j in items %}
+        {% if j.player_id == i.player_id %}
+            <img src="/static/images/items/{{ j.name }}.png" alt="{{ j.name }}" />
+        {% endif %}
+    {% endfor %}
+    </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+</br>
+
+<div class="matchplayerstats">
+
+<h3>Dire</h3>
+<table>
+    <tr class='heading'>
+        <td>Name</td>
+        <td>Hero</td>
+        <td>Level</td>
+        <td>K</td>
+        <td>D</td>
+        <td>A</td>
+        <td>CS</td>
+        <td>CD</td>
+        <td>GPM</td>
+        <td>XPM</td>
+        <td>Items</td>        
+    </tr>
+    {% for i in dire %}
+    <tr {% if i.leaver %} class="leaver" {% else %} class="player" {% endif %}>
+    <td><a href="/player/{{ i.player_id }}/">{{ i.name }}</a></td>
+    <td class="heroimg"><img src="/static/images/heroes/{{ i.hero_name }}_sb.png" alt="{{ i.hero_name }}" /></td>
+    <td class="numbersright">{{ i.level }}</td>
+    <td class="numbersright">{{ i.kills }}</td>
+    <td class="numbersright">{{ i.deaths }}</td>
+    <td class="numbersright">{{ i.assists }}</td>
+    <td class="numbersright">{{ i.lasthits }}</td>
+    <td class="numbersright">{{ i.denies }}</td>
+    <td class="numbersright">{{ i.gpm }}</td>
+    <td class="numbersright">{{ i.xpm }}</td>
+    <td class="items">
+    {% for j in items %}
+        {% if j.player_id == i.player_id %}
+            <img src="/static/images/items/{{ j.name }}.png" alt="{{ j.name }}" />
+        {% endif %}
+    {% endfor %}
+    </td>
+    </tr>
+    {% endfor %}
+</table>
 </div>
 
 {% endblock %}

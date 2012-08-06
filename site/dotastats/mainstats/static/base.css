@@ -18,6 +18,8 @@ table, th, td {
 
 tr.heading {
     font-size: 20px;
+    height: auto;
+    background-color: #222
 }
 
 #header {
@@ -73,8 +75,8 @@ a:hover {
     padding-top: 1px;
     padding-bottom: 20px;
     margin-top: 150px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 #matches {
@@ -88,4 +90,62 @@ a:hover {
 #nextlinks {
     font-size: 20px;
     text-align: center;
+}
+
+#matchdetails {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px
+}
+
+.matchplayerstats {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    border-spacing: 0px;
+}
+
+.matchplayerstats td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.matchplayerstats img {
+    margin: 0px;
+    border-spacing: 0px;
+    display: block;    
+}
+
+.matchplayerstats h3 {
+    text-align: center;
+}
+
+.matchplayerstats table {
+     width: 800px;
+}
+     
+.numbersright {
+    text-align: right;
+    width: 15px;
+}
+
+.heroimg {
+    padding: 0px;
+    width: 59px;
+}
+
+.items {
+    width: 242px;
+}
+
+.items img {
+    float: left;
+}
+
+.leaver {
+    background-color: #480000 
+}
+
+.player {
+    background-color: #333
 }

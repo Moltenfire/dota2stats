@@ -90,7 +90,7 @@ class Gamelist(models.Model):
     match_id = models.IntegerField()
     starttime = models.CharField(max_length=57, blank=True)
     mins = models.BigIntegerField(null=True, blank=True)
-    seconds = models.BigIntegerField(null=True, blank=True)
+    sec = models.CharField(max_length=6, blank=True)
     class Meta:
         db_table = u'gamelist'
 
@@ -148,6 +148,15 @@ class Matchdata(models.Model):
     class Meta:
         db_table = u'matchdata'
 
+class Matchdataitems(models.Model):
+    id = models.IntegerField()
+    match_id = models.IntegerField()
+    player_id = models.IntegerField()
+    slot = models.IntegerField()
+    name = models.CharField(max_length=180)
+    class Meta:
+        db_table = u'matchdataitems'
+
 class Matchinfo(models.Model):
     match_id = models.IntegerField(primary_key=True)
     radiant_win = models.IntegerField()
@@ -157,7 +166,27 @@ class Matchinfo(models.Model):
     class Meta:
         db_table = u'matchinfo'
 
+class Playermatchdata(models.Model):
+    id = models.IntegerField()
+    match_id = models.IntegerField()
+    player_id = models.IntegerField()
+    name = models.CharField(max_length=300)
+    hero_name = models.CharField(max_length=180)
+    slot = models.IntegerField()
+    kills = models.IntegerField()
+    deaths = models.IntegerField()
+    assists = models.IntegerField()
+    lasthits = models.IntegerField()
+    denies = models.IntegerField()
+    level = models.IntegerField()
+    gpm = models.IntegerField()
+    xpm = models.IntegerField()
+    leaver = models.IntegerField()
+    class Meta:
+        db_table = u'playermatchdata'
+
 class Playermatchinfo(models.Model):
+    id = models.IntegerField(primary_key=True)
     match = models.ForeignKey(Matchinfo)
     player = models.ForeignKey(Players)
     hero = models.ForeignKey(Heroes)
