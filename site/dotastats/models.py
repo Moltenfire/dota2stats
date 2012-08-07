@@ -117,11 +117,12 @@ class Items(models.Model):
 class Mainview(models.Model):
     name = models.CharField(max_length=300)
     account_id = models.IntegerField()
-    wins = models.DecimalField(null=True, max_digits=26, decimal_places=0, blank=True)
+    wins = models.DecimalField(null=True, max_digits=27, decimal_places=0, blank=True)
     games = models.BigIntegerField()
-    avg_kills = models.DecimalField(null=True, max_digits=11, decimal_places=4, blank=True)
-    avg_deaths = models.DecimalField(null=True, max_digits=11, decimal_places=4, blank=True)
-    avg_assists = models.DecimalField(null=True, max_digits=11, decimal_places=4, blank=True)
+    perc = models.DecimalField(null=True, max_digits=34, decimal_places=2, blank=True)
+    avg_kills = models.DecimalField(null=True, max_digits=10, decimal_places=2, blank=True)
+    avg_deaths = models.DecimalField(null=True, max_digits=10, decimal_places=2, blank=True)
+    avg_assists = models.DecimalField(null=True, max_digits=10, decimal_places=2, blank=True)
     class Meta:
         db_table = u'mainview'
 
@@ -212,6 +213,21 @@ class Players(models.Model):
     player_name = models.CharField(max_length=300)
     class Meta:
         db_table = u'players'
+
+class Playerview(models.Model):
+    name = models.CharField(max_length=300)
+    account_id = models.IntegerField()
+    wins = models.DecimalField(null=True, max_digits=27, decimal_places=0, blank=True)
+    games = models.BigIntegerField()
+    kills = models.DecimalField(null=True, max_digits=28, decimal_places=0, blank=True)
+    deaths = models.DecimalField(null=True, max_digits=28, decimal_places=0, blank=True)
+    assists = models.DecimalField(null=True, max_digits=28, decimal_places=0, blank=True)
+    lasthits = models.DecimalField(null=True, max_digits=31, decimal_places=0, blank=True)
+    denies = models.DecimalField(null=True, max_digits=31, decimal_places=0, blank=True)
+    gpm = models.DecimalField(null=True, max_digits=7, decimal_places=0, blank=True)
+    xpm = models.DecimalField(null=True, max_digits=7, decimal_places=0, blank=True)
+    class Meta:
+        db_table = u'playerview'
 
 class Uwcsplayers(models.Model):
     id = models.IntegerField(primary_key=True)

@@ -3,23 +3,27 @@ body {
     color: #DDD;
 }
 
-table, th, td {
-    border-collapse:collapse;
+tr.heading {
+    font-size: 20px;
+    height: auto;
+    background-color: #222
+}
+
+
+table, td {
     border: 1px solid #888;
+    border-collapse:collapse;
     font-size: 18px;
     width: auto;
     margin-left: auto;
     margin-right: auto;
     padding: 3px;
     padding-left: 5px;
-    padding-right: 5px;
-    
+    padding-right: 5px;  
 }
 
-tr.heading {
-    font-size: 20px;
-    height: auto;
-    background-color: #222
+tr {
+    background-color: #333
 }
 
 #header {
@@ -98,6 +102,26 @@ a:hover {
     width: 500px
 }
 
+#playerheader {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    text-align: center;
+}
+
+#playerstats {
+    width: 150px;
+    float: left;
+    text-align: left;
+
+}
+
+#playerstats ul li{
+list-style-type:none;
+padding:0px;
+margin:0px;
+}
+
 .matchplayerstats {
     margin-left: auto;
     margin-right: auto;
@@ -126,6 +150,10 @@ a:hover {
      
 .numbersright {
     text-align: right;
+}
+
+.numbersrightgame {
+    text-align: right;
     width: 15px;
 }
 
@@ -135,7 +163,11 @@ a:hover {
 }
 
 .items {
-    width: 242px;
+    width: 240px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: auto;
+    padding-bottom: auto;    
 }
 
 .items img {

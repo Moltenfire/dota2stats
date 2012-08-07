@@ -6,18 +6,18 @@
         <td>Name</td>
         <td>Games</td>
         <td>Wins</td>
-        <td>Average Kills</td>
-        <td>Average Deaths</td>
-        <td>Average Assists</td>
+        <td>Avg. Kills</td>
+        <td>Avg. Deaths</td>
+        <td>Avg. Assists</td>
     </tr>
     {% for i in uwcs_player_list %}
         <tr>
         <td><a href="/player/{{ i.account_id }}/">{{ i.name }}</a></td>
-        <td>{{ i.games }}</td>
-        <td>{{ i.wins}}</td>
-        <td>{{ i.avg_kills}}</td>
-        <td>{{ i.avg_deaths}}</td>
-        <td>{{ i.avg_assists}}</td>
+        <td class="numbersright">{{ i.games }}</td>
+        <td class="numbersright">{{ i.wins }}({{ i.perc }}%)</td>
+        <td class="numbersright">{{ i.avg_kills }}</td>
+        <td class="numbersright">{{ i.avg_deaths }}</td>
+        <td class="numbersright">{{ i.avg_assists }}</td>
         </tr>  
     {% endfor %}  
 </table>

@@ -31,14 +31,14 @@ Winner: {% if matchdata.radiant_win %} Radiant {% else %} Dire {% endif %} </br>
     <tr {% if i.leaver %} class="leaver" {% else %} class="player" {% endif %}>
         <td><a href="/player/{{ i.player_id }}/">{{ i.name }}</a></td>
         <td class="heroimg"><img src="/static/images/heroes/{{ i.hero_name }}_sb.png" alt="{{ i.hero_name }}" /></td>
-        <td class="numbersright">{{ i.level }}</td>
-        <td class="numbersright">{{ i.kills }}</td>
-        <td class="numbersright">{{ i.deaths }}</td>
-        <td class="numbersright">{{ i.assists }}</td>
-        <td class="numbersright">{{ i.lasthits }}</td>
-        <td class="numbersright">{{ i.denies }}</td>
-        <td class="numbersright">{{ i.gpm }}</td>
-        <td class="numbersright">{{ i.xpm }}</td>
+        <td class="numbersrightgame">{{ i.level }}</td>
+        <td class="numbersrightgame">{{ i.kills }}</td>
+        <td class="numbersrightgame">{{ i.deaths }}</td>
+        <td class="numbersrightgame">{{ i.assists }}</td>
+        <td class="numbersrightgame">{{ i.lasthits }}</td>
+        <td class="numbersrightgame">{{ i.denies }}</td>
+        <td class="numbersrightgame">{{ i.gpm }}</td>
+        <td class="numbersrightgame">{{ i.xpm }}</td>
         <td class="items">
         {% for j in items %}
             {% if j.player_id == i.player_id %}
@@ -74,14 +74,14 @@ Winner: {% if matchdata.radiant_win %} Radiant {% else %} Dire {% endif %} </br>
     <tr {% if i.leaver %} class="leaver" {% else %} class="player" {% endif %}>
         <td><a href="/player/{{ i.player_id }}/">{{ i.name }}</a></td>
         <td class="heroimg"><img src="/static/images/heroes/{{ i.hero_name }}_sb.png" alt="{{ i.hero_name }}" /></td>
-        <td class="numbersright">{{ i.level }}</td>
-        <td class="numbersright">{{ i.kills }}</td>
-        <td class="numbersright">{{ i.deaths }}</td>
-        <td class="numbersright">{{ i.assists }}</td>
-        <td class="numbersright">{{ i.lasthits }}</td>
-        <td class="numbersright">{{ i.denies }}</td>
-        <td class="numbersright">{{ i.gpm }}</td>
-        <td class="numbersright">{{ i.xpm }}</td>
+        <td class="numbersrightgame">{{ i.level }}</td>
+        <td class="numbersrightgame">{{ i.kills }}</td>
+        <td class="numbersrightgame">{{ i.deaths }}</td>
+        <td class="numbersrightgame">{{ i.assists }}</td>
+        <td class="numbersrightgame">{{ i.lasthits }}</td>
+        <td class="numbersrightgame">{{ i.denies }}</td>
+        <td class="numbersrightgame">{{ i.gpm }}</td>
+        <td class="numbersrightgame">{{ i.xpm }}</td>
         <td class="items">
         {% for j in items %}
             {% if j.player_id == i.player_id %}

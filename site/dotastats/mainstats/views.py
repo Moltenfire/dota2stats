@@ -1,16 +1,18 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
-from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo, Playermatchdata, Matchdataitems
+from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo, Playermatchdata, Matchdataitems, Playerview
 from math import ceil
 import datetime
 
 
 def index(request):
-    uwcs_player_list = Mainview.objects.all()
+    uwcs_player_list = Mainview.objects.all()    
     return render_to_response('mainstats/index.html', {'uwcs_player_list': uwcs_player_list})
     
 def player(request, player_id):
-    return HttpResponse("You're at the player %s." % player_id)
+    playerdata = get_object_or_404(Playerview, account_id=player_id)
+    
+    return render_to_response('mainstats/player.html', {'player': playerdata})
 
 def game(request, id):
     # Match_id, Start TIme, Duration, First blood time, Winner

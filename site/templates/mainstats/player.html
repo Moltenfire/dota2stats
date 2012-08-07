@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div  id="playerheader">
+<h2>{{ player.name }}</h3>
+
+<div id="playerstats">
+<ul>
+    <li>Games: {{ player.games }}</li>
+
+    <li>Wins: {{ player.wins }}</li>
+
+    <li>Kills: {{ player.kills }}</li>
+
+    <li>Deaths: {{ player.deaths }}</li>
+
+    <li>Assists: {{ player.assists }}</li>
+</ul>
+</div>
+
+<div id="playerstats">
+<ul>
+    <li>Lasthits: {{ player.lasthits }}</li>
+
+    <li>Denies: {{ player.denies }}</li>
+
+    <li>Gold/Min: {{ player.gpm }}</li>
+
+    <li>XP/min: {{ player.xpm }}</li>
+</ul>
+</div>
+</div>
+
+{% endblock %}
