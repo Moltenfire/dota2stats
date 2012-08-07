@@ -85,7 +85,7 @@ Winner: {% if matchdata.radiant_win %} Radiant {% else %} Dire {% endif %} </br>
         <td class="items">
         {% for j in items %}
             {% if j.player_id == i.player_id %}
-                <img src="/static/images/items/{{ j.name }}.png" alt="{{ j.name }}" />
+                    <img src="/static/images/items/{{ j.name }}.png" alt="{{ j.name }}" />
             {% endif %}
         {% endfor %}
         </td>

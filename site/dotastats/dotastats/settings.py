@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dota2',
+        'NAME': 'dotastats_two',
         'USER': 'moltenfire', 
         'PASSWORD': 'apple123',
         'HOST': '',

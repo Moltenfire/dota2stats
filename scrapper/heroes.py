@@ -9,9 +9,9 @@ data = scrapper.getDataURL(url)
 hero_data = data['result']['heroes']
 
 if hero_data == None:
-	sys.exit(1)
+    sys.exit(1)
 
 for i in hero_data:
-	commands.append((insert, (i['id'], i['name'][14:])))
+    commands.append((insert, (i['id'], i['name'][14:])))
 
 database.updateDatabase(commands)

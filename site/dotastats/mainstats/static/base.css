@@ -105,22 +105,11 @@ a:hover {
 #playerheader {
     margin-left: auto;
     margin-right: auto;
-    width: 300px;
+    width: 400px;
     text-align: center;
 }
 
-#playerstats {
-    width: 150px;
-    float: left;
-    text-align: left;
 
-}
-
-#playerstats ul li{
-list-style-type:none;
-padding:0px;
-margin:0px;
-}
 
 .matchplayerstats {
     margin-left: auto;
@@ -181,3 +170,42 @@ margin:0px;
 .player {
     background-color: #333
 }
+
+#columns {
+    padding-left: auto;
+    padding-right: auto;
+}
+
+#columns ul li{
+    list-style-type:none;
+    padding:0px;
+    margin:0px;    
+}
+
+#columns table tr {
+    border: 1px solid #222;
+}
+
+#columns td {
+    background-color: #222;
+    text-align: left;
+    border: 1px solid #222;
+    width: 200px;
+    margin-left: 10px;
+}
+
+.gameslist {
+    border-spacing: 0px;
+}
+
+.gameslist td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.gameslist img {
+    margin: 0px;
+    border-spacing: 0px;
+    display: block;    
+}
+

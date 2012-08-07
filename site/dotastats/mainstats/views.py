@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
-from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo, Playermatchdata, Matchdataitems, Playerview
+from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo, Playermatchdata, Matchdataitems, Playerview, Playergamedetails
 from math import ceil
 import datetime
 
@@ -8,11 +8,37 @@ import datetime
 def index(request):
     uwcs_player_list = Mainview.objects.all()    
     return render_to_response('mainstats/index.html', {'uwcs_player_list': uwcs_player_list})
+
     
-def player(request, player_id):
+def player_noid(request, player_id):
+    return player(request, player_id, 0)
+    
+def player(request, player_id, page):
+    num_pages = 10
+    
+    try:
+        x = int(page)
+    except:
+        raise Http404
+
     playerdata = get_object_or_404(Playerview, account_id=player_id)
+    gamedata = get_list_or_404(Playergamedetails, player_id=player_id)
+    items = list(Matchdataitems.objects.filter(player_id=player_id))
     
-    return render_to_response('mainstats/player.html', {'player': playerdata})
+    total = len(gamedata)
+    low = x * num_pages
+    high = low + num_pages
+    if high > total:
+        high = total
+    selected = gamedata[low:high]
+    
+    prev = x - 1 if x > 0 else 0 
+    
+    last = int(ceil((total / num_pages)))
+    
+    next = x + 1 if x < last else last
+    
+    return render_to_response('mainstats/player.html', {'player': playerdata, 'games': selected, 'items': items, 'total': total, 'min': low+1, 'max': high, 'prev': prev, 'last': last, 'next': next})
 
 def game(request, id):
     # Match_id, Start TIme, Duration, First blood time, Winner
@@ -25,8 +51,6 @@ def game(request, id):
     
     radiant = playerdata[:5]    
     dire = playerdata[5:]
- 
-    
     
     return render_to_response('mainstats/game.html', {'matchdata': matchdata, 'start': start, 'radiant': radiant, 'dire': dire, 'items': items})
     
@@ -35,6 +59,7 @@ def games(request):
     
 def games_page(request, page):
     num_pages = 25
+    
     try:
         x = int(page)
     except:
@@ -57,7 +82,7 @@ def games_page(request, page):
     return render_to_response('mainstats/games.html', {'game_list': selected, 'total': total, 'min': low+1, 'max': high, 'prev': prev, 'last': last, 'next': next})
     
 def add(request):
-    return HttpResponse("You're at the add player page.")
+    return render_to_response('mainstats/add.html')
     
 def search(request):
-    return HttpResponse("You're at the search page.")
+    return render_to_response('mainstats/search.html')

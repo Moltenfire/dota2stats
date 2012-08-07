@@ -3,33 +3,94 @@
 {% block content %}
 
 <div  id="playerheader">
-<h2>{{ player.name }}</h3>
+    <h2>{{ player.name }}</h3>
+    <div id="columns">
+        <table>
+            <tr>
+                <td>                    
+                    <ul>
+                        <li>Games: {{ player.games }}</li>
 
-<div id="playerstats">
-<ul>
-    <li>Games: {{ player.games }}</li>
+                        <li>Wins: {{ player.wins }}</li>
 
-    <li>Wins: {{ player.wins }}</li>
+                        <li>Kills: {{ player.kills }}</li>
 
-    <li>Kills: {{ player.kills }}</li>
+                        <li>Deaths: {{ player.deaths }}</li>
 
-    <li>Deaths: {{ player.deaths }}</li>
+                        <li>Assists: {{ player.assists }}</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Lasthits: {{ player.lasthits }}</li>
 
-    <li>Assists: {{ player.assists }}</li>
-</ul>
+                        <li>Denies: {{ player.denies }}</li>
+
+                        <li>Gold/Min: {{ player.gpm }}</li>
+
+                        <li>XP/min: {{ player.xpm }}</li>
+                    </ul>                    
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</br>
+<div class="gameslist">
+<table>
+    <tr class='heading'>
+        <td>Match Time</td>
+        <td>Hero</td>
+        <td>Level</td>
+        <td>K</td>
+        <td>D</td>
+        <td>A</td>
+        <td>CS</td>
+        <td>CD</td>
+        <td>GPM</td>
+        <td>XPM</td>
+        <td>Items</td>        
+    </tr>
+    
+    {% for i in games %}
+    <tr {% if i.leaver %} class="leaver" {% else %} class="player" {% endif %}>
+        <td><a href="/game/{{ i.match_id }}/">{{ i.starttime }}</a></td>
+        <td class="heroimg"><img src="/static/images/heroes/{{ i.hero_name }}_sb.png" alt="{{ i.hero_name }}" /></td>
+        <td class="numbersrightgame">{{ i.level }}</td>
+        <td class="numbersrightgame">{{ i.kills }}</td>
+        <td class="numbersrightgame">{{ i.deaths }}</td>
+        <td class="numbersrightgame">{{ i.assists }}</td>
+        <td class="numbersrightgame">{{ i.lasthits }}</td>
+        <td class="numbersrightgame">{{ i.denies }}</td>
+        <td class="numbersrightgame">{{ i.gpm }}</td>
+        <td class="numbersrightgame">{{ i.xpm }}</td>
+        <td class="items">
+        {% for j in items %}
+            {% if j.match_id == i.match_id %}
+                <img src="/static/images/items/{{ j.name }}.png" alt="{{ j.name }}" />
+            {% endif %}
+        {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+    
+</table>
 </div>
 
-<div id="playerstats">
-<ul>
-    <li>Lasthits: {{ player.lasthits }}</li>
+</br>
 
-    <li>Denies: {{ player.denies }}</li>
+<div id="nextlinks">
+    <a href="/player/{{ player.account_id }}/0/"><<</a>
 
-    <li>Gold/Min: {{ player.gpm }}</li>
+    <a href="/player/{{ player.account_id }}/{{ prev }}/"><</a>
+      
+    <a href="/player/{{ player.account_id }}/{{ next }}/">></a>
 
-    <li>XP/min: {{ player.xpm }}</li>
-</ul>
+    <a href="/player/{{ player.account_id }}/{{ last }}/">>></a>
 </div>
-</div>
+<p id='matches'>
+    Displaying matches {{ min }}-{{ max }} of {{ total }} 
+</p>
+
 
 {% endblock %}

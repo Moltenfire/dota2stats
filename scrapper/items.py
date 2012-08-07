@@ -9,9 +9,9 @@ data = scrapper.getDataFile(file)
 item_data = data['result']['items']
 
 if item_data == None:
-	sys.exit(1)
+    sys.exit(1)
 
 for i in item_data:
-	commands.append((insert, (i['id'], i['name'])))
+    commands.append((insert, (i['id'], i['name'])))
 
 database.updateDatabase(commands)
