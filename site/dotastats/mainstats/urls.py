@@ -10,4 +10,5 @@ urlpatterns = patterns('mainstats.views',
     url(r'^games/(?P<page>\d+)/$', 'games_page'),    
     url(r'^add/$', 'add'),
     url(r'^search/$', 'search'),
+    url(r'^search/results/$', 'search_results'),
 )

@@ -1,5 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-Search page coming soon(tm)
+<h1>{{ s }} </h1>
+
+<div class="searchbox">
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <h3>Player Search</h3>
+
+    <form action="/search/results/" method="post">
+    {% csrf_token %}
+
+    Search: <input type="text" name="search_term" value="{{ search_term }}"/>
+
+    <input type="submit" value="Search" />
+    </form>
+</div>
+<br>
+{% if results %}
+<div class"searchresults">
+    
+    <table>
+    <tr class='heading'>
+        <td>Name</td>
+        <td>Games</td>
+        <td>Wins</td>
+    </tr>
+    
+    {% for i in results %}
+        <tr>
+            <td><a href="/player/{{ i.account_id }}/">{{ i.name }}</a></td>
+            <td class="numbersright">{{ i.games }}</td>
+            <td class="numbersright">{{ i.wins }}</td>
+        </tr>  
+    {% endfor %}
+</div>
+{% endif %}
+
 {% endblock %}

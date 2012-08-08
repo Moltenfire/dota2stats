@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
-from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo, Playermatchdata, Matchdataitems, Playerview, Playergamedetails
+from mainstats.models import Uwcsplayers, Mainview, Gamelist, Matchinfo, Playermatchdata, Matchdataitems, Playerview, Playergamedetails, Searchplayers
+from django.template import RequestContext
 from math import ceil
 import datetime
 
@@ -85,4 +86,22 @@ def add(request):
     return render_to_response('mainstats/add.html')
     
 def search(request):
-    return render_to_response('mainstats/search.html')
+    return render_to_response('mainstats/search.html', {}, context_instance=RequestContext(request))
+    
+def search_results(request):
+    try:
+        search = request.POST['search_term']
+        results = get_list_or_404(Searchplayers, name__icontains=search)
+    except:
+        return render_to_response('mainstats/search.html', {'error_message': "Error when performing search."}, context_instance=RequestContext(request))
+        
+    
+    return render_to_response('mainstats/search.html', {'results': results, 'search_term': request.POST['search_term']}, context_instance=RequestContext(request))
+
+
+
+
+
+
+
+    

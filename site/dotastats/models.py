@@ -255,6 +255,14 @@ class Playerview(models.Model):
     class Meta:
         db_table = u'playerview'
 
+class Searchplayers(models.Model):
+    name = models.CharField(max_length=300)
+    account_id = models.IntegerField()
+    wins = models.DecimalField(null=True, max_digits=27, decimal_places=0, blank=True)
+    games = models.BigIntegerField()
+    class Meta:
+        db_table = u'searchplayers'
+
 class Temp(models.Model):
     player_name = models.CharField(max_length=300)
     account_id = models.IntegerField()

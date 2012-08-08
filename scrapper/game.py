@@ -20,7 +20,7 @@ def parseGame(id):
         print "Parsing:", id
         game = getData(id)
         
-        if game != None:
+        if game != None and game['human_players'] == 10:
             
             commands.append((sqlum, (game['match_id'], game['radiant_win'], game['duration'], game['starttime'], game['first_blood_time'])))
             

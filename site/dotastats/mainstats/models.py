@@ -185,3 +185,12 @@ class Playergamedetails(models.Model):
     starttime = models.CharField(max_length=57, blank=True)
     class Meta:
         db_table = u'playergamedetails'
+        
+class Searchplayers(models.Model):
+    name = models.CharField(max_length=300)
+    account_id = models.IntegerField(primary_key=True)
+    wins = models.DecimalField(null=True, max_digits=27, decimal_places=0, blank=True)
+    games = models.BigIntegerField()
+    class Meta:
+        db_table = u'searchplayers'
+        ordering = ['name']
